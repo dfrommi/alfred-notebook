@@ -1,10 +1,10 @@
 <?php
 
 class OpenNotebookCommand {
-	private $gh;
+	private $repo;
 	
-	function __construct($gh) {
-		$this->gh = $gh;
+	function __construct($repo) {
+		$this->repo = $repo;
 	}
 	
 	public function matches($query) {
@@ -15,7 +15,7 @@ class OpenNotebookCommand {
 		$items = array();
 		$openRepo = array(
 		  	'uid' => 'openRepo',
-			'arg' => 'https://github.com/'.$this->gh->repo,
+			'arg' => 'https://github.com/'.$this->repo,
 			'title' => 'Open notebook',
 			'subtitle' => $this->gh->repo,
 			'icon' => 'book-icon.png',

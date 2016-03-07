@@ -19,10 +19,10 @@ $repo = $wfUtils->get('repo');
 $gh = new Github($repo, $access_token);
 
 $commands = array(
-	new ValidateConfigCommand($gh),
+	new ValidateConfigCommand($gh->repo),
 	new NewNoteCommand($gh),
 	new SearchNoteCommand($gh),
-	new OpenNotebookCommand($gh)
+	new OpenNotebookCommand($gh->repo)
 );
 
 foreach($commands as $command) {

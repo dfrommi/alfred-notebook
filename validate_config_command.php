@@ -1,14 +1,14 @@
 <?php
 
 class ValidateConfigCommand {
-	private $gh;
+	private $repo;
 	
-	function __construct($gh) {
-		$this->gh = $gh;
+	function __construct($repo) {
+		$this->repo = $repo;
 	}
 	
 	public function matches($query) {
-		return empty($this->gh->repo);
+		return empty($this->repo);
 	}
 	
 	public function getItems($query) {
