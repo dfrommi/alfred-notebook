@@ -2,7 +2,7 @@
 require_once('workflows.php');
 
 class Github {
-	private $repo;
+	public $repo;
 	private $token;
 	private $w;
 	
