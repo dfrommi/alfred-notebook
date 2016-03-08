@@ -1,6 +1,6 @@
 <?php
 
-class OpenNotebookCommand {
+class DefaultActionsCommand {
 	private $repo;
 	
 	function __construct($repo) {
@@ -13,6 +13,7 @@ class OpenNotebookCommand {
 	
 	public function getItems($query) {
 		$items = array();
+
 		$openRepo = array(
 		  	'uid' => 'openRepo',
 			'arg' => 'https://github.com/'.$this->repo,
@@ -22,6 +23,16 @@ class OpenNotebookCommand {
 			'valid' => 'yes'
 		);
 		array_push($items, $openRepo);
+
+		$createNote = array(
+		  	'uid' => 'searchRepo',
+			'title' => 'Create new note',
+			'icon' => 'book-icon.png',
+			'valid' => 'no',
+			'autocomplete' => '+'
+		);
+		array_push($items, $createNote);
+
 		return $items;
 	}
 }

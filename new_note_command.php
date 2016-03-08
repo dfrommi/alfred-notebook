@@ -12,7 +12,9 @@ class NewNoteCommand {
 	}
 	
 	public function getItems($query) {
-		$searchCategory = trim($query, "+\t ");
+		$nbCategory = preg_replace('/^\+(\w+)?\s*(.*)\s*$/i', '$1', $query);
+		$filename = preg_replace('/^\+(\w+)?\s*(.*)\s*$/i', '$2', $query);
+
 		$template = "---\ncreated: ".date("Y-m-d")."\ntags: []\n---\n\n";
 
 		$response = $this->gh->getContent();
@@ -20,18 +22,22 @@ class NewNoteCommand {
 		$items = array();
 		foreach($response as $item) {
 			if($item['type'] == "dir" && $item['name'] != 'resources'
-			 && (empty($searchCategory) || stripos($item['name'], $searchCategory) > -1)) {
+			 && (empty($nbCategory) || stripos($item['name'], $nbCategory) > -1)) {
 				$category = $item['name'];
 				$params = array("value" => $template);
-				$itemUrl = sprintf("%s?%s", "https://github.com/$gh->repo/new/master/".$category, http_build_query($params));
+				if(!empty($filename)) {
+					$params['filename'] = $filename.".md";
+				}
+				$itemUrl = sprintf("%s?%s", "https://github.com/".$this->gh->repo."/new/master/".$category, http_build_query($params));
 
 				array_push($items, array(
 					'uid' => $item['sha'],
 					'arg' => $itemUrl,
 					'title' => $category,
-					'subtitle' => "Add note to ".$category,
+					'subtitle' => "Add note '".$filename."' to ".$category,
 					'icon' => 'note-taking_icon.jpg',
-					'valid' => 'yes'
+					'valid' => 'yes',
+					'autocomplete' => '+'.$category." ".$filename
 				));
 			}
 		}

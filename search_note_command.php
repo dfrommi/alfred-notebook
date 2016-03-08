@@ -15,7 +15,7 @@ class SearchNoteCommand {
 		$items = array();
 		$response = $this->gh->search($query);
 		foreach($response['items'] as $item) {
-			$itemUrl = "https://github.com/".$gh->repo."/blob/master/".$item['path'];
+			$itemUrl = "https://github.com/".$this->gh->repo."/blob/master/".$item['path'];
 
 			array_push($items, array(
 				'uid' => $item['sha'],

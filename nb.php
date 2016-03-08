@@ -5,7 +5,7 @@ require_once('workflows.php');
 require_once('validate_config_command.php');
 require_once('new_note_command.php');
 require_once('search_note_command.php');
-require_once('open_notebook_command.php');
+require_once('default_actions_command.php');
 
 array_shift($argv);
 $query = trim($argv[0]);
@@ -22,7 +22,7 @@ $commands = array(
 	new ValidateConfigCommand($gh->repo),
 	new NewNoteCommand($gh),
 	new SearchNoteCommand($gh),
-	new OpenNotebookCommand($gh->repo)
+	new DefaultActionsCommand($gh->repo)
 );
 
 foreach($commands as $command) {
