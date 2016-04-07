@@ -49,7 +49,7 @@ bm
 ## Add new bookmark
 New bookmarks can be added from workflow. While the page to be bookmarked is opened in *Chrome* or *Safari*, execute
 ```
-bm+
+bm +
 ```
 The bookmarks file is openend in editing mode in browser and the link to the page in available in clipboard. Just paste is to the desired section.
 

@@ -329,7 +329,7 @@
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>bm+</string>
+				<string>bm +</string>
 				<key>text</key>
 				<string>Add bookmark</string>
 				<key>withspace</key>
