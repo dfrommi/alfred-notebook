@@ -26,7 +26,8 @@ class NewNoteCommand {
 				$category = $item['name'];
 				$params = array("value" => $template);
 				if(!empty($filename)) {
-					$params['filename'] = $filename.".md";
+					// Due to a bug (?) at github, we need to include category in filename as well
+					$params['filename'] = $category."/".$filename.".md";
 				}
 				$itemUrl = sprintf("%s?%s", "https://github.com/".$this->gh->repo."/new/master/".$category, http_build_query($params));
 
